@@ -11,7 +11,7 @@ jobs:
     greet:
         runs-on: ubuntu-latest
         env:
-            TZ: Asia/Kolkata
+            TZ: Asia/Kolkata # This will print time in IST
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4
@@ -20,9 +20,6 @@ jobs:
               run: echo  "Hello from GitHub Actions!"
 
             - name: Print the current date and time
-              run: echo "Current time is $(date +'%Y-%m-%d %H:%M:%S')"
-              
-            - name: Print the current date and time in IST
               run: date
 
             - name: Print the name of the branch that triggered the run
