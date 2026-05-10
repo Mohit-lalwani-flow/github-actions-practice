@@ -31,4 +31,6 @@ jobs:
             - name: Print the runner's operating system
               run: echo "The runner OS is ${{ runner.os }}"
 
+            - name: Running wrong command 
+              run: suda apt-get update # instead of sudo i wrote suda
             
