@@ -10,6 +10,8 @@ on:
 jobs:
     greet:
         runs-on: ubuntu-latest
+        env:
+            TZ: Asia/Kolkata
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4
@@ -18,7 +20,8 @@ jobs:
               run: echo  "Hello from GitHub Actions!"
 
             - name: Print the current date and time
-              run: echo "Current time is $(date +'%Y-%m-%d %H:%M:%S')"
+              #run: echo "Current time is $(date +'%Y-%m-%d %H:%M:%S')"
+              run: date
 
             - name: Print the name of the branch that triggered the run
               run: echo "This is the name of the branch - ${{ github.ref_name }}"
