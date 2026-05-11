@@ -1,0 +1,19 @@
+# This workflow trigger pull request raised 
+
+name: pr check
+
+on:
+    pull_request:
+        branches: [main]
+
+jobs:
+    pr-check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: PR check running for branch
+              run: echo "PR running for the branch - ${{ github.ref_name }}"
+
+
