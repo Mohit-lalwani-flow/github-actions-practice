@@ -4,7 +4,7 @@ name: day41-schedule
 
 on:
     schedule:
-        - cron: 0 0 * *  # Runs at 00:00 every day
+        - cron: '0 0 * * *'  # Runs at 00:00 every day
 
 jobs:
     scheduler:
