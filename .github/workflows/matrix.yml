@@ -10,7 +10,9 @@ jobs:
     matrix:
         runs-on: ${{ matrix.os }}
         strategy:
-            fail-fast: false
+            # fail-fast: false
+            fail-fast: true
+
             matrix:
                 # This will create combinations for both Operating Systems
                 os: [ubuntu-latest, macos-latest]
