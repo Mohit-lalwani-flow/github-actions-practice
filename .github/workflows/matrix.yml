@@ -8,10 +8,12 @@ on:
 
 jobs:
     matrix:
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: false
             matrix:
+                # This will create combinations for both Operating Systems
+                os: [ubuntu-latest, macos-latest]
                 python-version: ["3.10" , "3.11" , "3.12"]
 
         steps:
