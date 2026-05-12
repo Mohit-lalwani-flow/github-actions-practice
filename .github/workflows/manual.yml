@@ -1,0 +1,22 @@
+# This is the Workflow which triggers on manual click sith environment variable
+
+name: manual with environment variables
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: This is the environment where this workflow run
+                default: staging
+                required: true
+                type: choice
+                options:
+                    - prod
+                    - staging
+
+jobs:
+    manual:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Running environment
+              run: echo "The selected environment is:" ${{ inputs.environment }}
