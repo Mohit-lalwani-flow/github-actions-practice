@@ -10,8 +10,8 @@ jobs:
     matrix:
         runs-on: ${{ matrix.os }}
         strategy:
-            # fail-fast: false
-            fail-fast: true
+            fail-fast: false
+            # fail-fast: true
 
             matrix:
                 # This will create combinations for both Operating Systems
@@ -32,4 +32,12 @@ jobs:
               with: 
                     python-version: ${{ matrix.python-version }}
 
+            - name: Simulated Test Step
+              run: |
+                # If this is Python 3.10 on Ubuntu, force a failure
+                if [[ "${{ matrix.python-version }}" == "3.10" && "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+                    echo "Intentional failure triggered!"
+                    exit 1
+                fi
+                echo "Test passed on ${{ matrix.os }} with Python ${{ matrix.python-version }}"
              
