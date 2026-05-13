@@ -23,6 +23,6 @@ jobs:
                 run: |
                     echo "Hostname: $HOSTNAME"
                     echo "Working directory: $PWD"
-                    echo "Hi from github" > hi.txt
+                    echo "Namaste github" > namaste.txt
             
         
