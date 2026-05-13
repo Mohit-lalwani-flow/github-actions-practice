@@ -1,0 +1,23 @@
+# This workflow uses self-hosted runner 
+
+name: self hosted runner
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    self-hosted-runner:
+        runs-on: self-host
+
+        steps:
+            - name: Print the hostname of the machine 
+              run:  "OS name : $RUNNER_OS"
+
+            - name: Print the working directory 
+              run: Working directory $(pwd)
+            
+            - name: Create a file
+              run: touch test.md
+
+        
