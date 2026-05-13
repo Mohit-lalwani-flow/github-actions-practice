@@ -13,6 +13,11 @@ jobs:
             fail-fast: false
             matrix: 
                 os: [ubuntu-latest , windows-latest , macos-latest]
+
+        # This forces Windows to use Bash, allowing universal commands
+        defaults:
+          run:
+            shell: bash
         
         steps:
             - name: Print runner information
@@ -22,12 +27,6 @@ jobs:
                 echo "OS name : $RUNNER_OS"
                 echo "Hostname : $(hostname)"
                 echo "Current user : $(whoami)"
-                exit 1
-                fi
-                # For OS windows-latest
-                Write-Output "OS Name: $env:RUNNER_OS"
-                Write-Output "Hostname: $([System.Net.Dns]::GetHostName())"
-                Write-Output "Current User: $(whoami)"
                 
 
 
