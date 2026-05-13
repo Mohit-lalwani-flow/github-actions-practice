@@ -3,8 +3,9 @@
 name: self hosted runner
 
 on:
-    push:
-        branches: [main]
+    workflow_dispatch:
+    # push:
+    #     branches: [main]
 
 jobs:
     self-hosted-runner:
