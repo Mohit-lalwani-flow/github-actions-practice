@@ -14,9 +14,6 @@ jobs:
             - name: Print the version of the Docker
               run: docker version
 
-            - name: Setup python 
-              uses: actions/setup-python@v5
-
             - name: Print the version of the Python 
               run: python3 --version
 
