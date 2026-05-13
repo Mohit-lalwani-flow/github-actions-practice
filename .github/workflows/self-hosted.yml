@@ -8,7 +8,7 @@ on:
 
 jobs:
     self-hosted-runner:
-        runs-on: self-hosted
+        runs-on: [self-hosted , my-linux-server]
 
         steps:
             # - name: Print the hostname of the machine 
