@@ -3,8 +3,9 @@
 name: package version
 
 on:
-    push:
-        branches: [main]
+    workflow_dispatch
+    # push:
+    #     branches: [main]
 
 jobs:
     package-version:
