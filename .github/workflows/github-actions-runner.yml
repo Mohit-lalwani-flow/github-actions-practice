@@ -3,8 +3,9 @@
 name: github runner
 
 on:
-    push:
-        branches: [main]
+    workflow_dispatch:
+    # push:
+    #     branches: [main]
 
 jobs:
     github-runner:
