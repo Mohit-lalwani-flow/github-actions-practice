@@ -1,4 +1,4 @@
-# This workflow uses self-hosted runner 
+# This workflow uses a labeled self-hosted runner 
 
 name: self hosted runner
 
@@ -8,21 +8,12 @@ on:
 
 jobs:
     self-hosted-runner:
-        runs-on: [self-hosted]
+        # Changed to target your specific label
+        runs-on: [self-hosted, my-linux-runner]
 
         steps:
-            # - name: Print the hostname of the machine 
-            #   run:  "OS name : ${{ runner.os }}"
-
-            # - name: Print the working directory 
-            #   run: Working directory $(pwd)
-            
-            # - name: Create a file
-            #   run: touch test.md
-              - name: Checking following information about self-hosted runner
-                run: |
-                    echo "Hostname: $HOSTNAME"
-                    echo "Working directory: $PWD"
-                    echo "Namaste github" > namaste.txt
-            
-        
+            - name: Checking following information about self-hosted runner
+              run: |
+                  echo "Hostname: $HOSTNAME"
+                  echo "Working directory: $PWD"
+                  echo "Namaste github" > namaste.txt
