@@ -1,0 +1,25 @@
+# This workflow tells version of the package in github actions runner 
+
+name: package version
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    package-version:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Print the version of the Docker
+              run: docker version
+
+            - name: Print the version of the Python 
+              run: python version
+
+            - name: Print the version of the Node
+              run: node version
+
+            - name: Print the version of the git 
+              run: git version
+
