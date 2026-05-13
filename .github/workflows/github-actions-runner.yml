@@ -22,8 +22,6 @@ jobs:
         steps:
             - name: Print runner information
               run: |
-                # If this is OS is Linux and MacOS then command are 
-                if [[ "${{ matrix.os }}" == "ubuntu-latest" && "${{ matrix.os }}" == "macos-latest" ]]; then
                 echo "OS name : $RUNNER_OS"
                 echo "Hostname : $(hostname)"
                 echo "Current user : $(whoami)"
