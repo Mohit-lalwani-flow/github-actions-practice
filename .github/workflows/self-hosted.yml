@@ -11,13 +11,18 @@ jobs:
         runs-on: self-hosted
 
         steps:
-            - name: Print the hostname of the machine 
-              run:  "OS name : ${{ runner.os }}"
+            # - name: Print the hostname of the machine 
+            #   run:  "OS name : ${{ runner.os }}"
 
-            - name: Print the working directory 
-              run: Working directory $(pwd)
+            # - name: Print the working directory 
+            #   run: Working directory $(pwd)
             
-            - name: Create a file
-              run: touch test.md
-
+            # - name: Create a file
+            #   run: touch test.md
+              - name: Checking following information about self-hosted runner
+                run: |
+                    echo "Hostname: $HOSTNAME"
+                    echo "Working directory: $PWD"
+                    echo "Hi from github" > hi.txt
+            
         
