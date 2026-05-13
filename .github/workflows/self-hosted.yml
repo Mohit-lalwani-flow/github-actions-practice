@@ -12,7 +12,7 @@ jobs:
 
         steps:
             - name: Print the hostname of the machine 
-              run:  "OS name : $RUNNER_OS"
+              run:  "OS name : ${{ runner.os }}"
 
             - name: Print the working directory 
               run: Working directory $(pwd)
