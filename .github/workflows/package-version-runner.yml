@@ -18,11 +18,11 @@ jobs:
               uses: actions/setup-python@v5
 
             - name: Print the version of the Python 
-              run: python version
+              run: python3 --version
 
             - name: Print the version of the Node
-              run: node version
+              run: node --version
 
             - name: Print the version of the git 
-              run: git version
+              run: git --version
 
