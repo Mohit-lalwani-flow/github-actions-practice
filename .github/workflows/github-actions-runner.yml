@@ -1,0 +1,35 @@
+# This is the workflow in which we github runner
+
+name: github runner
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    github-runner:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix: 
+                os: [ubuntu-latest , windows-latest , macos-latest]
+        
+        steps:
+            - name: Print runner information
+              run: |
+                # If this is OS is Linux and MacOS then command are 
+                if [[ "${{ matrix.os }}" == "ubuntu-latest" && "${{ matrix.os }}" == "macos-latest" ]]; then
+                echo "OS name : $RUNNER_OS"
+                echo "Hostname : $(hostname)"
+                echo "Current user : $(whoami)"
+                exit 1
+                fi
+                # For OS windows-latest
+                Write-Output "OS Name: $env:RUNNER_OS"
+                Write-Output "Hostname: $([System.Net.Dns]::GetHostName())"
+                Write-Output "Current User: $(whoami)"
+                
+
+
+
+
