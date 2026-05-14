@@ -4,8 +4,8 @@ name: task environment
 
 on:
     # workflow_dispatch:
-    push:
-        branches: [main]
+    # push:
+    #     branches: [main]
 
 # workflow level env variable , available to whole workflow
 env:
