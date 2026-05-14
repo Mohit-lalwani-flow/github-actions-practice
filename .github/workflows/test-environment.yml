@@ -1,0 +1,33 @@
+# This workflow contains which also uses environment variables at 3 levels
+
+name: task environment
+
+on:
+    # workflow_dispatch:
+    push:
+        branches: [main]
+
+# workflow level env variable , available to whole workflow
+env:
+    APP_NAME: myapp
+
+
+jobs:
+    env-variable:
+        runs-on: ubuntu-latest
+
+        # Job level env variable , available to job only
+        env:
+            ENVIRONMENT: staging
+        steps:
+
+            - name: Print all the env variables
+              run: >
+                echo "Workflow level environment variable : ${{ env.APP_NAME }}"
+                echo "Job level environment variable : ${{ env.ENVIRONMENT }}"
+                echo "Step level environment variable : ${{ env.VERSION }}"
+            
+              # Step level env variable , available to step only
+              env:
+                VERSION: 1.0.0
+    
