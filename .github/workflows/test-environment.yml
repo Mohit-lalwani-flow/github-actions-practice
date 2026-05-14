@@ -22,11 +22,13 @@ jobs:
         steps:
 
             - name: Print all the env variables
-              run: >
-                Workflow level environment variable : ${{ env.APP_NAME }},
-                Job level environment variable : ${{ env.ENVIRONMENT }},
-                Step level environment variable : ${{ env.VERSION }}, 
-            
+              run: |
+                echo "Workflow level environment variable : ${{ env.APP_NAME }}"
+                echo "Job level environment variable : ${{ env.ENVIRONMENT }}"
+                echo "Step level environment variable : ${{ env.VERSION }}"
+                echo "Commit SHA : ${{ github.sha }}"
+                echo "Actor (who triggered the run).: ${{ github.actor }}"
+
               # Step level env variable , available to step only
               env:
                 VERSION: 1.0.0
