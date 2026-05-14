@@ -1,0 +1,28 @@
+# This workflow contains multiple jobs with are dependent on certain jobs as well 
+
+name: multi job
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print "Building the app"
+              run: echo "Building the app"
+
+    test:
+        runs-on: ubuntu-latest
+        needs: [build]
+        steps:
+            - name: Print "Running tests"
+              run: echo "Running tests"
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs: [build , test]
+        steps:
+            - name: Print "Deploying""
+              run: echo "Deploying"
