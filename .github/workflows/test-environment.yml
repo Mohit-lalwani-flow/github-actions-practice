@@ -23,9 +23,9 @@ jobs:
 
             - name: Print all the env variables
               run: >
-                echo "Workflow level environment variable : ${{ env.APP_NAME }}"
-                echo "Job level environment variable : ${{ env.ENVIRONMENT }}"
-                echo "Step level environment variable : ${{ env.VERSION }}"
+                Workflow level environment variable : ${{ env.APP_NAME }},
+                Job level environment variable : ${{ env.ENVIRONMENT }},
+                Step level environment variable : ${{ env.VERSION }}, 
             
               # Step level env variable , available to step only
               env:
