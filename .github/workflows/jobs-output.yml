@@ -1,0 +1,35 @@
+# This workflow uses output of other jobs 
+
+name : jobs ouptut 
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    job_one:
+        runs-on: ubuntu-latest
+
+        # Map the step output to a job-level output
+        outputs:
+            date_output: ${{ steps.set_date.outputs.today }}
+
+        steps:
+            - name: Sets the output 
+              id: set_date
+
+              # Writing to $GITHUB_OUTPUT makes the variable available to the step/job
+              run: echo "today=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+    job_two: 
+
+        runs-on: ubuntu-latest
+
+        # 'needs' ensures job_one completes first and provides access to its outputs
+        needs: [job_one]
+        steps:
+
+            - name: Reads the output form job_one
+              run: |
+                echo "The date received was: ${{ needs.job_one.outputs.date_output }}"
+         
