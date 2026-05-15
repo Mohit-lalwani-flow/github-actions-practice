@@ -30,7 +30,7 @@ jobs:
               run: echo "Branch - ${{ github.ref_name }}"
 
             - name: Print commit message 
-              run:  echo "Commit Message - ${{ github.event.head_commit.message }}"
+              run:  echo "Commit Message - ${{ github.event.commit[0].message }}"
 
     
     
