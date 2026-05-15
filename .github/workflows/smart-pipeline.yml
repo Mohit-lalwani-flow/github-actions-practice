@@ -4,6 +4,8 @@ name: smart pipeline
 
 on:
     push:
+        branches:
+            - '**'
 
 
 jobs:
