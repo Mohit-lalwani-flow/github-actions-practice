@@ -1,53 +1,41 @@
-# This workflow contains multiple jobs with are dependent on certain conditions
-
 name: conditionals
 
 on:
-    # workflow_dispatch:
-
-    push:
-        branches: [main]
-
-    pull_request:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 
 jobs:
-    check-conditions:
+  check-conditions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Branch Specific Task
+        if: github.ref == 'refs/heads/main'
+        run: echo "This step only runs on the main branch."
 
-        runs-on: ubuntu-latest
-        steps:
-            - name: Branch Specific Task
-              # Only runs if the push event happened on the main branch
-              if: github.ref == 'refs/heads/main'
-              run: echo "This step only runs on the main branch."
+      - name: Experimental Task
+        continue-on-error: true
+        run: |
+          echo "Running a task that might fail..."
+          exit 1
 
-            - name: Experimental Task
+      - name: Normal Follow-up Tasks
+        run: echo "This runs because the previous step had continue-on-error."
 
-              # If this command fails, the workflow will not stop
-              continue-on-error: true
-              run: |
-                echo "Running a task that might fail..."
-                exit 1
+      - name: Critical Execution Task
+        run: |
+          echo "Forcing a real failure to test the next step..."
+          exit 1
 
-            - name: Normal Follow-up Tasks
-              run: echo "This runs because the previous step had continue-on-error."
+      - name: Error Handling Task
+        if: failure()
+        run: echo "This step only runs because a previous step failed."
 
-            - name: Critical Execution Task
-              run: |
-                echo "Forcing a real failure to test the next step..."
-                exit 1
-
-            - name: Error Handling Task
-                # Only runs if a previous step in this job strictly failed
-              if: failure()
-              run: echo "This step only runs because a previous step failed."
-
-
-    on_pull:
-        # Only runs on push events, completely skipping pull requests
-        if: github.event_name == 'pull'
-        runs-on: ubuntu-latest
-
-        steps:
-            - name: Pull Only Tasks
-              run: echo "Only Runs When Pull event is happening"
-
+  on_pull:
+    # This job only runs if the event triggering the workflow is a pull_request
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Only Tasks
+        run: echo "Only Runs When Pull event is happening"
