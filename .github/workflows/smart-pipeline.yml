@@ -3,9 +3,10 @@
 name: smart pipeline 
 
 on:
-    push:
-        branches:
-            - '**'
+    workflow_dispatch:
+    # push:
+    #     branches:
+    #         - '**'
 
 
 jobs:
