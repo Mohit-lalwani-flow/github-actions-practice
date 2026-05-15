@@ -36,10 +36,10 @@ jobs:
                 echo "Forcing a real failure to test the next step..."
                 exit 1
 
-                - name: Error Handling Task
+            - name: Error Handling Task
                 # Only runs if a previous step in this job strictly failed
-                if: failure()
-                run: echo "This step only runs because a previous step failed."
+              if: failure()
+              run: echo "This step only runs because a previous step failed."
 
 
     on_pull:
