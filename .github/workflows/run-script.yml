@@ -1,0 +1,30 @@
+# This workflow Fails the pipeline if the script exits with a non-zero code
+
+name: Run Repository Script 
+
+on: [push]
+# on: 
+#     workflow_dispatch:
+
+jobs:
+    execute-script:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Install Dependencies
+              run: |
+                if [ -f package.json ]; then
+                  npm install
+                elif [ -f requirements.txt ]; then 
+                  pip install -r requirements.txt
+                else
+                  echo "No dependecy found"
+                fi
+
+            - name: Run Script
+              run: |
+                chmod +x ../scripts/test.py
+                python3 ../scripts/test.py
+
