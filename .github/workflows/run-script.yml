@@ -25,6 +25,6 @@ jobs:
 
             - name: Run Script
               run: |
-                chmod +x ../scripts/test.py
-                python3 ../scripts/test.py
+                chmod +x ./scripts/test.py
+                python3 ./scripts/test.py
 
