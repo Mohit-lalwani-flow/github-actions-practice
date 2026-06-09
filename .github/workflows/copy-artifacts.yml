@@ -31,6 +31,7 @@ jobs:
 
     download-artifacts:
         runs-on: ubuntu-latest
+        needs: upload-artifacts
         steps:
 
             # Step 1: Download the artifact uploaded in the previous job
