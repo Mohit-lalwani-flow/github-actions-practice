@@ -1,0 +1,30 @@
+# This workflow has a step that generates a file — e.g., a test report or a log file
+
+name: upload artifacts
+
+on: [push]
+
+jobs:
+    upload-artifacts:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+              
+            # Step 2: Generate your custom file (e.g., a test report or log file)
+            - name: Generating Report File
+              run: |
+                mkdir -p output/
+                echo "Test Execution Status: PASSED" > output/test-report.log
+                echo "Timestamp: $(date)" >> output/test-report.log
+                echo "Workflow run ID: $GITHUB_RUN_ID" >> output/test-report.log
+                echo "Workflow run number: $GITHUB_RUN_NUMBER" >> output/test-report.log
+                echo "Repository: $GITHUB_REPOSITORY" >> output/test-report.log
+                echo "Actor: $GITHUB_ACTOR" >> output/test-report.log
+
+            # Step 3: Save the file using actions/upload-artifact
+            - name: Uploading Artifacts
+              uses: actions/upload-artifact@v4
+              with: 
+                name: execution-logs  # The name of the downloadable zip package 
+                path: output/test-report.log  # Path to the specific file or directory
