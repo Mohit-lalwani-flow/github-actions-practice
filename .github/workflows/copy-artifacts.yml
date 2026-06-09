@@ -2,3 +2,46 @@
 
 name: Download Artifacts Between Jobs
 
+on: [push]
+
+jobs:
+    upload-artifacts:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+              
+            # Step 2: Generate your custom file (e.g., a test report or log file)
+            - name: Generating Report File
+              run: |
+                mkdir -p output/
+                echo "Test Execution Status: PASSED" > output/test-report.log
+                echo "Timestamp: $(date)" >> output/test-report.log
+                echo "Workflow run ID: $GITHUB_RUN_ID" >> output/test-report.log
+                echo "Workflow run number: $GITHUB_RUN_NUMBER" >> output/test-report.log
+                echo "Repository: $GITHUB_REPOSITORY" >> output/test-report.log
+                echo "Actor: $GITHUB_ACTOR" >> output/test-report.log
+
+            # Step 3: Save the file using actions/upload-artifact
+            - name: Uploading Artifacts
+              uses: actions/upload-artifact@v4
+              with: 
+                name: execution-logs  # The name of the downloadable zip package 
+                path: output/test-report.log  # Path to the specific file or directory
+
+    download-artifacts:
+        runs-on: ubuntu-latest
+        steps:
+
+            # Step 1: Download the artifact uploaded in the previous job
+            - name: Download The Artifacts
+              uses: actions/download-artifact@v4
+              with:
+                name: execution-logs # Must exactly match the upload name
+                path: downloaded-output/ # Directory where the file will be extracted
+                
+            - name: Read the file content
+              run: |
+                cat downloaded-output/test-report.log
+            
+              
