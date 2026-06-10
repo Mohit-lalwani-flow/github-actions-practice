@@ -2,9 +2,9 @@
 
 name: Cached Python Pipeline
 
-on: [push]
-# on:
-#     workflow_dispatch:
+# on: [push]
+on:
+    workflow_dispatch:
 
 jobs:
     run-with-cache:
