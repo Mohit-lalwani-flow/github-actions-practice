@@ -9,4 +9,4 @@ print("Testing pipeline failure...")
 
 # Fix it (Go Green 🟢)
 # Code 0 means success, which tells GitHub Actions everything passed
-sys.exit(0
+sys.exit(0)
