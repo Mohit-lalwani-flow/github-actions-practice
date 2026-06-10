@@ -2,9 +2,9 @@
 
 name: Run Repository Script 
 
-on: [push]
-# on: 
-#     workflow_dispatch:
+# on: [push]
+on: 
+    workflow_dispatch:
 
 jobs:
     execute-script:
