@@ -1,0 +1,4 @@
+# This is just random requirements file not need anywhere else , just for the caching pipeline - cached-run.yml
+
+fastapi
+uvicorn
