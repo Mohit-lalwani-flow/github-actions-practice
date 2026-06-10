@@ -1,0 +1,33 @@
+# This workflow works on cache
+
+name: Cached Python Pipeline
+
+on: [push]
+# on:
+#     workflow_dispatch:
+
+jobs:
+    run-with-cache:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+             # Sets up Python and handles caching for 'pip' automatically
+            - name: Setup Python
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.10'
+                cache: 'pip'  # Automatically searches for requirements.txt to generate a cache key
+
+            - name: Install Dependecy
+              run: |
+                if [ -f requirements.txt ]; then
+                    pip install -r requirements.txt
+                fi
+
+            # Runs your existing test script
+            - name: Run Script
+              run: |
+                chmod +x ./scripts/test.py
+                python3 ./scripts/test.py
